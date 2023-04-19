@@ -2,11 +2,12 @@ import httpCommon from "./httpCommon";
 
 class AuthService {
   login(data: any) {
-    return httpCommon.post("/auth/login", data);
+    return httpCommon.post("/client/login", data);
   }
 
-  register(data: { fname: string; sname: string; studentID: string; password: string; }) {
-    return httpCommon.post("/auth/register", data);
+  register(data: any) {
+    console.log(data);
+    return httpCommon.post("/client/register", data);
   }
 }
 export default new AuthService();
