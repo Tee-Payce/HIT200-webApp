@@ -1,5 +1,9 @@
 .nav{
-    background-image: linear-gradient( 79deg, rgb(247, 246, 248), rgb(252, 235, 5), rgb(55, 13, 243));
+    background-image: linear-gradient( 79deg, rgb(248, 251, 203), rgb(252, 235, 5), rgb(60, 24, 223));
+    margin-left: 60px;
+        margin-right: 60px;
+        margin-top: 20px;
+        border-radius: 10px;
 
 }
 .card:hover{

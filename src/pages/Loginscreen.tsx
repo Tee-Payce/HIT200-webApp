@@ -10,18 +10,23 @@ export function Loginscreen() {
   const [loading, setLoading] = useState(false);
 
   const postData = (e: any) => {
+    setLoading(true);
     e.preventDefault();
-    AuthService.login({ studentID: studentID, password: password }).then(
-      (response: any) => {
+    AuthService.login({ studentID: studentID, password: password })
+      .then((response: any) => {
         console.log(response.data);
         localStorage.setItem("user-token", response.data.token);
         setLoading(false);
         //  if status is 200 and role is user navigate to user dashboard
-        if (response.status === 200 && response.data.role === "user") {
-          navigate("/home");
-        }
-      }
-    );
+        // if (response.status === 200 && response.data.role === "user") {
+        navigate("/home");
+        // }
+      })
+      .catch((error: any) => {
+        alert("Invalid Credentials");
+        console.log(error);
+        setLoading(false);
+      });
   };
 
   return (
@@ -33,7 +38,7 @@ export function Loginscreen() {
       />
       <div className=" text-dark">
         <h3 style={{ justifyContent: "top", fontWeight: "bolder" }}>
-          sign into your account
+          Sign into your account
         </h3>
       </div>
 
@@ -66,9 +71,7 @@ export function Loginscreen() {
             {loading ? (
               <span className="spinner-border spinner-border-sm"></span>
             ) : (
-              <Nav.Link to="/home" as={NavLink}>
-                Submit{" "}
-              </Nav.Link>
+              "Submit"
             )}
           </Button>
           <div className="input2 align-items-center mt-5 ">

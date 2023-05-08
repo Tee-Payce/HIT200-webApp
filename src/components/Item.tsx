@@ -8,12 +8,12 @@ import { formatCurrency } from "../utilities/formatCurrency";
 type ItemProps = {
   id: number;
   comboname: string;
-  varient: string;
+  ticketInfo: string;
   price: number;
   image: string;
 };
 
-export function Item({ id, comboname, varient, price, image }: ItemProps) {
+export function Item({ id, comboname, ticketInfo, price, image }: ItemProps) {
   const {
     getItemQuantity,
     increaseCartQuantity,
@@ -42,7 +42,7 @@ export function Item({ id, comboname, varient, price, image }: ItemProps) {
       />
       <Card.Body className=" d-flex flex-column  " style={{ fontSize: 15 }}>
         <Card.Title className="d-flex justify-content-between align-items-baseline mb-4">
-          <span>{varient}</span>
+          <span>{ticketInfo}</span>
           <span className="ms-2 text-muted">{formatCurrency(price)}</span>
         </Card.Title>
         <div className="mt-auto">

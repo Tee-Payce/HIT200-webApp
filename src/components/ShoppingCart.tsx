@@ -1,16 +1,94 @@
 import { Button, Offcanvas, Stack } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { formatCurrency } from "../utilities/formatCurrency";
-import { CartItem } from "./CartItem";
-import storeItems from "../data/items.json";
-import QRCode from "react-qr-code";
-import { Item } from "./Item";
-import React from "react";
+import storeItems from "../data/items";
+
+import React, { useState } from "react";
+
+import axios from "axios";
+import Sidebar from "./Sidebar";
+
+type CartItemProps = {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+};
+
+export function CartItem({ id, name, price, quantity }: CartItemProps) {
+  const { removeFromCart } = useShoppingCart();
+  const [tickets, setTickets] = useState([
+    { ticketInfo: "", quantity: 0, user: "" },
+  ]);
+
+  const item = storeItems.find((i) => i.id === id);
+
+  function handleRemove() {
+    removeFromCart(id);
+  }
+
+  // log all data for this cart item
+  console.log({ id, name, price, quantity, item });
+
+  return (
+    <div className="d-flex justify-content-between align-items-center">
+      <div>
+        <h4 className="text-dark">{name}</h4>
+        <p className="text-muted">{formatCurrency(price)}</p>
+      </div>
+      <div>
+        <p className="text-dark">{quantity}</p>
+      </div>
+      <div>
+        <Button variant="outline-danger" onClick={handleRemove}>
+          <i className="bi bi-trash"></i>
+        </Button>
+      </div>
+    </div>
+  );
+}
+
 type ShoppingCartProps = {
   isOpen: boolean;
 };
+
 export function ShoppingCart({ isOpen }: ShoppingCartProps) {
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post("http://localhost:5001/tickets", {
+        tickets: [
+          {
+            ticketInfo: "Rice and Chicken",
+            quantity: 2,
+            user: "John Doe",
+          },
+          {
+            ticketInfo: "Rice and Beef",
+            quantity: 1,
+            user: "Jane Smith",
+          },
+        ],
+      });
+      console.log(res.data);
+      // Handle successful response
+    } catch (error) {
+      console.error(error);
+      // Handle error response
+    }
+  };
   const { closeCart, cartItems } = useShoppingCart();
+
+  // create an array to store selected meals
+  const selectedItems = [];
+
+  // loop through all cart items and store their data in the selectedItems array
+  for (let i = 0; i < cartItems.length; i++) {
+    const selectedItem = storeItems.find((item) => item.id === cartItems[i].id);
+    selectedItems.push(selectedItem);
+  }
+
+  console.log(selectedItems, "selected"); // log all selected items
 
   return (
     <div>
@@ -21,10 +99,13 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <Stack gap={3}>
-            {cartItems.map((item) => (
-              <CartItem key={item.id} {...item} />
-            ))}
+          <Sidebar />
+          {/* <Stack gap={3}>
+            {cartItems.map((item) => {
+              const meal = storeItems.find((i) => i.id === item.id);
+              console.log(meal);
+              return <CartItem key={item.id} {...item} />;
+            })}
             <div className="ms-auto fw-bold fs-5 text-dark">
               Total{" "}
               {formatCurrency(
@@ -34,15 +115,8 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
                 }, 0)
               )}
             </div>
-          </Stack>
-          <Button className="w-100">
-            <a
-              href="https://www.paynow.co.zw/Payment/Link/?q=c2VhcmNoPXJ5YW50amVuYSU0MGdtYWlsLmNvbSZhbW91bnQ9MTIuMDAmcmVmZXJlbmNlPSZsPTA%3d"
-              target="_blank"
-            >
-              <img src="https://www.paynow.co.zw/Content/Buttons/Medium_buttons/button_pay-now_medium.png" />
-            </a>
-          </Button>
+          </Stack> */}
+          <div className="text-center"></div>
         </Offcanvas.Body>
       </Offcanvas>
     </div>

@@ -1,0 +1,73 @@
+const items = [
+  {
+    id: 1,
+    comboname: "Chicken",
+    name: "Sadza and chicken",
+    price: 1.0,
+    image: "/imgs/sadzaChicken.jpeg",
+  },
+  {
+    id: 2,
+    comboname: "Chicken",
+    name: "Rice and chicken",
+    price: 1.0,
+    image: "/imgs/riceChicken.jpeg",
+  },
+  {
+    id: 3,
+    comboname: "Chicken",
+    name: "macaroni and chicken",
+    price: 1.0,
+    image: "/imgs/macChicken.jpeg",
+  },
+  {
+    id: 4,
+    comboname: "Beef",
+    name: "Sadza and beef",
+    price: 1.0,
+    image: "/imgs/sadzaBeef.jpeg",
+  },
+  {
+    id: 5,
+    comboname: "Beef",
+    name: "rice and beef",
+    price: 1.0,
+    image: "/imgs/riceBeef.jpeg",
+  },
+  {
+    id: 6,
+    comboname: "Beef",
+    name: "macaroni and beef",
+    price: 1.0,
+    image: "/imgs/macBeef.jpeg",
+  },
+  {
+    id: 7,
+    comboname: "Beans",
+    name: "Sadza and beans",
+    price: 0.5,
+    image: "/imgs/sadzaBeans.jpeg",
+  },
+  {
+    id: 8,
+    comboname: "Beans",
+    name: "rice and beans",
+    price: 0.5,
+    image: "/imgs/riceBeans.jpeg",
+  },
+  {
+    id: 9,
+    comboname: "Beans",
+    name: "macaroni and beans",
+    price: 0.5,
+    image: "/imgs/macBeans.jpeg",
+  },
+  {
+    id: 10,
+    comboname: "Special",
+    name: "1/4 chicken and chips",
+    price: 2.0,
+    image: "/imgs/chickenChips.jpeg",
+  },
+];
+export default items;

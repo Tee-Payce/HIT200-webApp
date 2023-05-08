@@ -2,7 +2,7 @@ import { Button, Card, Offcanvas, Stack } from "react-bootstrap";
 import { useTicketPurchased } from "../context/TicketPurchasedContext";
 import { formatCurrency } from "../utilities/formatCurrency";
 import { PurchasedItem } from "../components/PurchasedItem";
-import storeItems from "../data/items.json";
+import storeItems from "../data/items";
 
 type TicketPurchasedProps = {
   isOpen: boolean;

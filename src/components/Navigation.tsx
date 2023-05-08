@@ -44,11 +44,27 @@ export function Navigation() {
               <Offcanvas.Body>
                 <Nav className="justify-content-end  flex-grow-1 pe-3">
                   <Nav.Link
-                    to="/"
+                    to="/home"
                     className="input2 text-white font-weight-bold"
                     as={NavLink}
                   >
                     Home
+                  </Nav.Link>
+
+                  <Nav.Link
+                    to="/tickets"
+                    className="input2 text-white font-weight-bold"
+                    as={NavLink}
+                  >
+                    My Tickets
+                  </Nav.Link>
+
+                  <Nav.Link
+                    to="/profile"
+                    className="input2 text-white font-weight-bold"
+                    as={NavLink}
+                  >
+                    My Profile
                   </Nav.Link>
                   <Nav.Link
                     to="/home"
@@ -56,22 +72,7 @@ export function Navigation() {
                     onClick={openCart}
                     as={NavLink}
                   >
-                    My Tickets
-                  </Nav.Link>
-
-                  <Nav.Link
-                    to="/statements"
-                    className="input2 text-white font-weight-bold"
-                    as={NavLink}
-                  >
-                    Statements
-                  </Nav.Link>
-                  <Nav.Link
-                    to="/profile"
-                    className="input2 text-white font-weight-bold"
-                    as={NavLink}
-                  >
-                    My Profile
+                    Cart
                   </Nav.Link>
                 </Nav>
               </Offcanvas.Body>

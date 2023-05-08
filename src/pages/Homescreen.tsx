@@ -1,6 +1,6 @@
 import { Row, Col } from "react-bootstrap";
 import { Item } from "../components/Item";
-import storeItems from "../data/items.json";
+import storeItems from "../data/items";
 
 interface ItemGroup {
   comboName: string;
